@@ -10,7 +10,8 @@ fetch('http://localhost:5000/produtos')
             <div class="d-flex justify-content-between">
             <h4>Nome: ${produto.nome}  <br>  Quantidade: ${produto.quantidade}</h4>
             </div>
-            </li>`
+            </li>
+            <br>`
         });
     })
 
