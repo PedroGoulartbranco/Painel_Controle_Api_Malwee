@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+    font-size: 8vh;
+}
+
+body {
+    background-color: beige;
+}
+
+#div_produtos {
+    background-color: white;
+    margin-top: 5vh;
+    border-radius: 10px;
+}
