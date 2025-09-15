@@ -3,7 +3,7 @@ const cors = require('cors'); // Importa o CORs
 
 const app = express(); //Cria o servidor
 
-const port = 3000; //Variavel para armazenar a porta
+const port = 5000; //Variavel para armazenar a porta
 
 //Para permitir receber json nas requisições
 app.use(express.json());
@@ -14,3 +14,12 @@ const produtos = [
     {"id": "002", "nome": "Controle Remoto Televisão", "quantidade": 15},
     {"id": "003", "nome": "Sofá", "quantidade": 2}
 ]
+
+app.get("/produtos", (request, response) => {
+    response.send(produtos);
+})
+
+//Faz rodar
+app.listen(port, ()  => {
+    console.log("http://localhost:5000")
+})
