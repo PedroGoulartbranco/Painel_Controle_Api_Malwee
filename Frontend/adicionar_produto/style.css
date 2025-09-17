@@ -1,0 +1,20 @@
+body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom,  #ff7f50,  #cabdb8); 
+
+}
+.botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.relevo {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5%;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+    
+}
