@@ -14,7 +14,7 @@ function carregar_produtos() {
             todos_produtos = produtos;
             lista_produtos.innerHTML += `<li class="list-group-item">Id: ${produto.id}
             <div class="d-flex justify-content-between">
-            <h4>Nome: ${produto.nome}  <br>  Quantidade: ${produto.quantidade}</h4>
+            <h4>Nome: ${produto.nome}  <br>  Quantidade: <div id='id_quantidade_${produto.id}'>${produto.quantidade}</div></h4>
             <div>
             <input type="number" class="form-control" id="numero_quantidade_${produto.id}" >
             <button type="button" class="btn btn-primary" onclick="aumentar_quantidade('${produto.id}')">Aumentar</button>
@@ -23,6 +23,10 @@ function carregar_produtos() {
             </div>
             </li>
             <br>`
+            if (produto.quantidade < 10) {
+                let div_quantidade = document.getElementById(`id_quantidade_${produto.id}`);
+                div_quantidade.classList.add("deixar_vermelho")
+            }
         });
     })
 
