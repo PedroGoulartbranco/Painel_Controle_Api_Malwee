@@ -19,6 +19,12 @@ app.get("/produtos", (request, response) => {
     response.send(produtos);
 })
 
+app.get("/produtos/informacoes/:id", (request, response) => {
+    const id = req.params.id
+    const informacoes_produto = produtos.findIndex(produto_achar => produto_achar.id == id)
+    response.send(informacoes_produto);
+})
+
 app.put("/produtos/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const produto = req.body;
