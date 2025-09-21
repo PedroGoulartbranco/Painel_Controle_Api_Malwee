@@ -4,7 +4,7 @@ let todos_produtos = [];
 
 function carregar_produtos() {
     
-    fetch('http://localhost:5000/produtos')
+    fetch('http://localhost:3000/produtos')
 
     .then(response => response.json())
 
@@ -19,6 +19,7 @@ function carregar_produtos() {
             <input type="number" class="form-control" id="numero_quantidade_${produto.id}" >
             <button type="button" class="btn btn-primary" onclick="aumentar_quantidade('${produto.id}')">Aumentar</button>
             <button type="button" class="btn btn-warning" onclick="diminuir_quantidade('${produto.id}')">Diminuir</button>
+            <button type="button" class="btn btn-danger" onclick="deletar(${produto.id}, '${produto.nome}')">Deletar</button>
             </div>
             </div>
             </li>
@@ -52,7 +53,7 @@ function aumentar_quantidade(id) {
     
         let indice_produto_escolhido = todos_produtos.findIndex(produto_achar => produto_achar.id == id)
         let produto_escolhido = todos_produtos[indice_produto_escolhido]
-        fetch(`http://localhost:5000/produtos/${id}`, {
+        fetch(`http://localhost:3000/produtos/${id}`, {
     
         method: 'PUT',
     
@@ -106,7 +107,7 @@ function diminuir_quantidade(id) {
     if (numero_digitado < 0) {
         numero_digitado *= -1;
     }
-    fetch(`http://localhost:5000/produtos/${id}`, {
+    fetch(`http://localhost:3000/produtos/${id}`, {
     
         method: 'PUT',
     
@@ -135,6 +136,30 @@ function diminuir_quantidade(id) {
 
     
 }
+
+function deletar(id, nome) {
+    let confirmar = confirm(`Deseja mesmo excluir o produto ${nome} ?`);
+    if (confirmar) {
+        fetch(`http://localhost:3000/produtos/deletar/${id}`, {
+        
+            method: 'DELETE',
+        
+        })
+        
+            .then(response => {
+                if (response.ok) {
+                    alert(`Produto ${nome} apagado com sucesso.`);
+                    window.location.reload();
+                    return;
+                }
+                alert("Algo deu errado")
+            })
+    
+        
+            .catch(error => console.log(error));
+    }
+    } 
+
 
 window.onload = function () {
         carregar_produtos(); 

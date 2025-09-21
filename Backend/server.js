@@ -3,16 +3,20 @@ const cors = require('cors'); // Importa o CORs
 
 const app = express(); //Cria o servidor
 
-const port = 5000; //Variavel para armazenar a porta
+
+const port = 3000; //Variavel para armazenar a porta
 
 //Para permitir receber json nas requisições
+
+
 app.use(express.json());
 app.use(cors());
 
+
 const produtos = [
-    {"id": "001", "nome": "Televisão", "quantidade": 4},
-    {"id": "002", "nome": "Controle Remoto Televisão", "quantidade": 15},
-    {"id": "003", "nome": "Sofá", "quantidade": 2}
+    {"id": 1, "nome": "Televisão", "quantidade": 4},
+    {"id": 2, "nome": "Controle Remoto Televisão", "quantidade": 15},
+    {"id": 3, "nome": "Sofá", "quantidade": 2}
 ]
 
 let proximo_id = 4;
@@ -46,10 +50,22 @@ app.post("/produtos/cadastrar", (req, res) => {
     novoProduto.id = proximo_id++;
     produtos.push(novoProduto);
 
-    res.status(201).send(novoProduto)
+    res.status(201).send(novoProduto);
+})
+
+app.delete("/produtos/deletar/:id", (req, res) => {
+    const id_int = req.params.id;
+    const indice = produtos.findIndex(produto_achar => produto_achar.id == id_int);
+
+    if (indice == null) {
+        res.status(404).send("Produto não existente.")
+    } else {
+        produtos.splice(indice, 1);
+        res.status(200).send("Produto apagado.")
+    }
 })
 
 //Faz rodar
 app.listen(port, ()  => {
-    console.log("http://localhost:5000")
+    console.log("http://localhost:3000")
 })

@@ -2,6 +2,7 @@ function adicionar_produto(event){
      event.preventDefault();
      let nome = event.target.nome_form.value;
      let quantidade = event.target.quantidade_form.value;
+     quantidade = parseInt(quantidade);
      if (verificar_quantidade(quantidade)) {
         fetch('http://localhost:3000/produtos/cadastrar', {
 
