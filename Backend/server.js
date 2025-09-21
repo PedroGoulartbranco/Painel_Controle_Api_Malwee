@@ -15,7 +15,7 @@ const produtos = [
     {"id": "003", "nome": "Sofá", "quantidade": 2}
 ]
 
-let proximo_id = 
+let proximo_id = 4;
 
 app.get("/produtos", (request, response) => {
     response.send(produtos);
@@ -42,7 +42,11 @@ app.put("/produtos/:id", (req, res) => {
 })
 
 app.post("/produtos/cadastrar", (req, res) => {
+    const novoProduto = req.body;
+    novoProduto.id = proximo_id++;
+    produtos.push(novoProduto);
 
+    res.status(201).send(novoProduto)
 })
 
 //Faz rodar
