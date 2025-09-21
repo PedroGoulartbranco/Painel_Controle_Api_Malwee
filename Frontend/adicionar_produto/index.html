@@ -10,7 +10,7 @@
 <body>
     <div class="relevo">
         <h1>Cadastrar Produto</h1>
-    <form class="container">
+    <form class="container" onsubmit="adicionar_produto(event)">
         <div class="mb-3">
         <label for="nome_form" class="form-label">Nome Produto</label>
           <input type="text" class="form-control" id="nome_form" >
@@ -22,5 +22,6 @@
         <button type="submit" class="btn btn-primary botoes">Cadastrar</button>
       </form>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
